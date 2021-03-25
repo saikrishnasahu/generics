@@ -1,0 +1,78 @@
+Generics
+
+Bugs
+
+Compile Time Bugs
+Easily detectable and error are easy to solve
+
+Run Time Bugs
+Bit difficult to analyse and are time consuming
+
+Helps reducing runtime bugs to compile time bugs
+Reuse the same code with generics
+Stronger type checks - compile time error
+we eliminate casting
+
+Generic Type
+
+Specify it with class name -> Store<T>
+Instantiate -> Store<Integer> name = new Store<>();
+
+Generic Method
+
+Specify it before return type -> public <T> void methodName(T t)
+Call directly
+
+Bounded Type Parameter
+
+When we want some specific type of class or it's subclass, bounded type is necessary
+Allowed to use multiple bounded types
+Defined with extends some type -> <T extends Comparable<T>>
+
+Type Inference
+
+When there is a single type with different inputs, then type inference tries to find out the more specific type with of all.
+List<String> list = new Arraylist<>(); - here the other is infered that it would be string
+public <T> void methodName(T t) is called methodName("") -> then compiler infers T as String
+help compiler with type witness as -> <String>methodName("") else compiler infers itself
+
+Unbounded wildcard
+
+Collection<String> c1 = new Arraylist<>();
+Collection<Object> c2 = c1 -> this will give compile time error
+even though String is an Object, Collection<String> is not Collection<Object>
+super type of Collection<String> is wildcard -> Collection<?>
+Not able to add just print
+
+Upper Bound wildcard
+
+Here we add extends T -> ? extends Number
+So we can pass any subtype to it like Integer, Double or Number itself
+Still cannot add a subtype as it may be any other type of the class
+Can only be read with Number as can be any type
+
+Lower Bound wildcard
+
+Here we add super T -> ? super Integer
+So we can pass any super type to it like Number, Object or Integer itself
+Cannot use both super and extends
+Still cannot add a super type as it may be any other type of the class but can add sub type
+Can only be read with Object as can be any type
+
+Producer extends Consumer super Principle
+
+Producer extends - use it for reading it from a list and use the upper type as we do not know the type but cannot add
+Consumer super - use it for adding sub type as we do not know which type but can read only through Object
+If read as well as write then use the specific class to avoid issues
+
+Type Erasure
+
+Java virtual machine transforms generics code to bound or object if unbounded
+Uses cast if necessary
+also uses bridge methods (extra methods) to maintain polymorphism
+
+Bridge Methods
+
+these occur when inheritance occur
+it is an extra method that is added in child class to avoid ambigious situations
+suppose parent class is unbounded but the child class extends a bounded one. so extra method with signature of parent method is created in child to bridge the child and parent class

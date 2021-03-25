@@ -1,0 +1,136 @@
+Collection Framework
+
+Group of classes and interfaces
+Implement collection data structure like list, stack, queue
+Developed by Joshua Bloch
+Introduced in 1.2
+No need to implement every data structure and algoritm from sratch
+
+Almost every class implement java.util.Collection interface except Map
+Collection extends java.lang.Iterable for for-each loop
+
+Iterable I
+	Collection I - Store scalar(single) values
+		List I
+			ArrayList
+			LinkedList
+			Vector
+				Stack
+		Set I
+			HashSet
+			LinkedHashSet
+			SortedSet I
+				TreeSet
+		Queue I
+			PriorityQueue
+			Deque I
+				ArrayDeque
+				LinkedList
+Map I - Store key value pairs
+	HashTable
+	HashMap
+	LinkedHashMap
+	SortedMap I
+		TreeMap
+
+ArrayList
+Underlying DS - array
+random access O(1)- very fast, get items by index, index starts with 0
+similar to vector except synchronization
+all other (remove) - O(n) - slow - shift each element
+capacity - if size known better to mention it else new addition increases reallocation as initial 10
+addition sequential so new added to last
+
+LinkedList
+Underlying DS - node. keeps reference of the previous as well as next element (double-linkedlist - in other language)
+single-linkedlist (not in java) keeps reference of next element
+no random access - search sequentially - O(n)
+not synchronized
+removal efficient - O(1)
+addition sequential so new added to last
+
+Vector
+synchronized
+many legacy methods not present in collection
+capacity - similar to arraylist, capacityincrement - the number by which the vector should increase to accomodate new items
+addition sequential so new added to last
+
+Stack
+Add and remove item from top - LIFO
+used for parsing xml file, graph traversal with depth-first search, recursion uses stack under hood
+push - add to top
+peek - top element to see
+pop - top element to see and remove
+
+Queue
+Add to bottom remove from top - FIFO
+used - graph traversal with breadth first search
+add - add to bottom
+element - top element to see
+remove - top element to remove
+
+PriorityQueue
+priority assigned to every single value
+elements are ordered based on the order defined by comparable
+add - adds item
+peek - view of first item, if empty null
+poll - remove first item, if empty null
+
+Deque
+double ended queue
+insert and remove from both sides
+offerFirst, offerLast - add
+removeFirst, removeLast - remove
+
+ArrayDeque
+Not thread safe
+can used both as queue and stack
+if used as stack then faster than stack
+if used as queue then faster than linkedlist
+
+Map
+key -> value
+no duplicate key
+put - add key, value
+get - value by key
+remove - by key
+put, remove, get based on hash function - O(1) - HashMap, LinkedHashMap, HashTable
+
+HashMap
+one null key many null values
+no insertion order
+
+LinkedHashMap
+extends HashMap
+maintains insertion order - backed by LinkedList
+
+TreeMap
+underlying DS - red-black tree basically balance tree implementation
+sorted keys - elements are ordered based on the order defined by comparable
+put, remove, get - O(logN)
+
+HashTable
+no null key or value
+very slow
+synchronized
+
+Set
+no duplicate values - no pair of e1 and e2 such that e1.equals(e2)
+add, remove, contains, size based on hash function - O(1) - HashSet, LinkedHashSet
+backed by corresponding map - HashSet, LinkedHashSet - HashMap and TreeSet - TreeMap
+
+HashSet
+no insertion order
+allows null values
+iteration performance - requires time proportional to size of set + capacity - no of items + no of buckets - not to set initial capacity too high
+
+LinkedHashSet
+extends HashSet
+maintains insertion order - backed by LinkedList - slower than HashSet
+iteration performance - unaffected by capacity - requires time proportional to no of items
+used to copy a set
+
+TreeSet
+underlying DS - red-black tree basically balance tree implementation
+sorted keys - elements are ordered based on the order defined by comparable
+put, remove, get - O(logN)
